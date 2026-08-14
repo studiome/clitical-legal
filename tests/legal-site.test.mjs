@@ -52,6 +52,21 @@ test('terms contain medical limitations and professional consultation notice', (
   assert.match(en, /healthcare professional/i);
 });
 
+test('Japanese pages display dates in Japanese format', () => {
+  assert.match(
+    read('privacy/ja/index.html'),
+    /<time datetime="2026-08-13">最終改定日：2026年8月13日<\/time>/,
+  );
+  assert.match(
+    read('terms/ja/index.html'),
+    /<time datetime="2026-08-13">最終改定日：2026年8月13日<\/time>/,
+  );
+  assert.match(
+    read('support/ja/index.html'),
+    /<time datetime="2026-08-13">最終更新日：2026年8月13日<\/time>/,
+  );
+});
+
 test('robots, sitemap, and static hosting marker exist', () => {
   assert.equal(read('robots.txt').trim().startsWith('User-agent: *'), true);
   assert.match(read('robots.txt'), /Allow: \//);
